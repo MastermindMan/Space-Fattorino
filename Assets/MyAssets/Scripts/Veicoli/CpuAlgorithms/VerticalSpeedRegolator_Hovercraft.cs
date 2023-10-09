@@ -22,7 +22,7 @@ namespace Vehicles.CpuAlgorithms
         public VerticalSpeedRegolator_Hovercraft(VehicleCPU vehicleCPU)
         {
             hCPU = (HovercraftCPU)vehicleCPU;
-            pidController = new PidController(16 * VehicleMass, 10 * VehicleMass, 0 * VehicleMass, Mathf.Infinity, 0);
+            pidController = new PidController(16 * VehicleMass, 10 * VehicleMass, 0 * VehicleMass, 0, Mathf.Infinity);
         }
 
         //private float[] powerOutPut = new float[NumberOfThrusters];

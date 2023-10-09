@@ -29,10 +29,10 @@ namespace Vehicles
         {
             SetConstants(Kp, Ki, Kd);
         }
-        public PidController(float Kp, float Ki, float Kd, float maxValue, float minValue)
+        public PidController(float Kp, float Ki, float Kd, float minValue, float maxValue)
         {
             SetConstants(Kp, Ki, Kd);
-            SetOutputLimits(maxValue, minValue);
+            SetOutputLimits(minValue, maxValue);
         }
 
         public float Seek(float setPoint, float input)
@@ -50,7 +50,7 @@ namespace Vehicles
 
             //Debug.Log("PID STATS: Kp" + Kp + ", Ki" + Ki + ", Kd" + ", error" + error + ", iTerm" + iTerm + ", lastinput" + lastInput + ", lasterror" + lastError + ", " + proportional + "," + integral + "," + derivative);
                     
-            return Mathf.Clamp(outPut, 0, Mathf.Infinity);
+            return Mathf.Clamp(outPut, minValue, maxValue);
         }
         private float Seek_P()
         {
@@ -94,10 +94,10 @@ namespace Vehicles
         {
             pidConstants[constantIndex] = value;
         }
-        public void SetOutputLimits(float maxValue, float minValue)
+        public void SetOutputLimits(float minValue, float maxValue)
         {
-            this.maxValue = maxValue;
             this.minValue = minValue;
+            this.maxValue = maxValue;
         }
         public void ResetITerm()
         {
